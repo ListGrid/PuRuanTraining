@@ -1,0 +1,19 @@
+--使用db
+use stuDB
+go
+
+--建立trigger
+CREATE TRIGGER safety
+ON Database
+For DROP_TABLE,ALTER_TABLE,CREATE_TABLE
+AS 	
+	PRINT 'You must disable trigger safety to drop or alter tables!'
+	ROLLBACK TRAN;
+go
+
+--测试trigger
+go
+create table aa
+(	id int,
+	name nvarchar(10)
+)

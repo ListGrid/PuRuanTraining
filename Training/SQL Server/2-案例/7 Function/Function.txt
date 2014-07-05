@@ -1,0 +1,17 @@
+--自定义函数
+--返回stuDB数据库内的bank表中，currentMoney数据值<1000的合计数
+--创建
+CREATE FUNCTION fn_currentSumUnder1000()
+RETURNS Money
+AS
+Begin
+	declare @sumTotal Money
+	SELECT @sumTotal = sum(currentMoney) From bank WHERE currentMoney<1000
+	Return @sumTotal
+End
+
+
+
+--调用
+select dbo.fn_currentSumUnder1000()
+

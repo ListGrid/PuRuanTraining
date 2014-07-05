@@ -1,0 +1,16 @@
+USE [DOTNET]
+GO
+/****** 对象:  Table [dbo].[Bank]    脚本日期: 07/30/2008 12:33:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Bank](
+	[userId] [varchar](10) COLLATE Chinese_PRC_CI_AS NULL,
+	[balance] [smallmoney] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF

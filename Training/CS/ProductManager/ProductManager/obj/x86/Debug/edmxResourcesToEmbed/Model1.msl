@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bbsDB_dataModelStoreContainer" CdmEntityContainer="bbsDB_dataEntities">
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="bbsDB_dataModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="LineID" ColumnName="LineID" />
+          <ScalarProperty Name="Product1" ColumnName="Product" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="LineTotal" ColumnName="LineTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

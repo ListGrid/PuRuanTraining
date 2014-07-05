@@ -1,0 +1,406 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0062)http://www.cnblogs.com/rainman/archive/2012/03/13/2393975.html -->
+<HTML lang=zh-cn xmlns="http://www.w3.org/1999/xhtml"><HEAD><META 
+content="IE=8.0000" http-equiv="X-UA-Compatible">
+<TITLE>C#操作SQL Server数据库 - Rain Man - 博客园</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css 
+href="C%23操作SQL%20Server数据库%20-%20Rain%20Man%20-%20博客园_files/blog-common.css"><LINK 
+id=MainCss rel=stylesheet type=text/css 
+href="C%23操作SQL%20Server数据库%20-%20Rain%20Man%20-%20博客园_files/style.css"><LINK 
+rel=stylesheet type=text/css 
+href="C%23操作SQL%20Server数据库%20-%20Rain%20Man%20-%20博客园_files/37071.css"><LINK 
+title=RSS rel=alternate type=application/rss+xml 
+href="http://www.cnblogs.com/rainman/rss"><LINK title=RSD rel=EditURI 
+type=application/rsd+xml href="http://www.cnblogs.com/rainman/rsd.xml"><LINK 
+rel=wlwmanifest type=application/wlwmanifest+xml 
+href="http://www.cnblogs.com/rainman/wlwmanifest.xml">
+<SCRIPT type=text/javascript 
+src="C%23操作SQL%20Server数据库%20-%20Rain%20Man%20-%20博客园_files/jquery.js"></SCRIPT>
+
+<SCRIPT type=text/javascript>var currentBlogApp = 'rainman', cb_enable_mathjax=false;</SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="C%23操作SQL%20Server数据库%20-%20Rain%20Man%20-%20博客园_files/blog-common.js"></SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.23580"></HEAD>
+<BODY><A name=top></A>
+<DIV id=home>
+<DIV id=header>
+<DIV id=blogTitle><!--done-->
+<DIV class=title><A id=Header1_HeaderTitle class=headermaintitle 
+href="http://www.cnblogs.com/rainman/">Rain Man</A></DIV>
+<DIV class=subtitle>怀仁怀朴，唯真唯实。 
+<STYLE type=text/css>@import url( http://files.cnblogs.com/rainman/rainman.css );
+</STYLE>
+</DIV></DIV><!--end: blogTitle 博客的标题和副标题 -->
+<DIV id=navigator>
+<UL id=navList>
+  <LI id=nav_sitehome><A id=MyLinks1_HomeLink class=menu 
+  href="http://www.cnblogs.com/">博客园</A></LI>
+  <LI id=nav_myhome><A id=MyLinks1_MyHomeLink class=menu 
+  href="http://www.cnblogs.com/rainman/">首页</A></LI>
+  <LI id=nav_q><A class=menu href="http://q.cnblogs.com/">博问</A></LI>
+  <LI id=nav_ing><A class=menu href="http://home.cnblogs.com/ing/">闪存</A></LI>
+  <LI id=nav_newpost><A id=MyLinks1_NewPostLink class=menu 
+  href="http://i.cnblogs.com/EditPosts.aspx?opt=1" rel=nofollow>新随笔</A></LI>
+  <LI id=nav_contact><A id=MyLinks1_ContactLink class=menu 
+  href="http://space.cnblogs.com/msg/send/Rain++Man" rel=nofollow>联系</A></LI>
+  <LI id=nav_rss><A id=MyLinks1_Syndication class=menu 
+  href="http://www.cnblogs.com/rainman/rss">订阅</A> <!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/rainman/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></LI>
+  <LI id=nav_admin><A id=MyLinks1_Admin class=menu href="http://i.cnblogs.com/" 
+  rel=nofollow>管理</A></LI></UL>
+<DIV class=blogStats><!--done-->随笔-155&nbsp; 文章-0&nbsp; 评论-208&nbsp; </DIV><!--end: blogStats --></DIV><!--end: navigator 博客导航栏 --></DIV><!--end: header 头部 -->
+<DIV id=main>
+<DIV id=mainContent>
+<DIV class=forFlow><!--done-->
+<DIV id=topics>
+<DIV class=post>
+<H1 class=postTitle><A id=cb_post_title_url class=postTitle2 
+href="http://www.cnblogs.com/rainman/archive/2012/03/13/2393975.html">C#操作SQL 
+Server数据库</A> </H1>
+<DIV class=clear></DIV>
+<DIV class=postBody>
+<DIV id=cnblogs_post_body>
+<DIV class=rainman-post>
+<H3>1、概述</H3>
+<P>ado.net提供了丰富的数据库操作，这些操作可以分为三个步骤：</P>
+<UL>
+  <LI>第一，使用SqlConnection对象连接数据库；</LI>
+  <LI>第二，建立SqlCommand对象，负责SQL语句的执行和存储过程的调用；</LI>
+  <LI>第三，对SQL或存储过程执行后返回的“结果”进行操作。</LI></UL>
+<P>对返回“结果”的操作可以分为两类：</P>
+<UL>
+  <LI>一是用SqlDataReader直接一行一行的读取数据集；</LI>
+  <LI>二是DataSet联合SqlDataAdapter来操作数据库。</LI></UL>
+<P>两者比较：</P>
+<UL>
+  <LI>SqlDataReader时刻与远程数据库服务器保持连接，将远程的数据通过“流”的形式单向传输给客户端，它是“只读”的。由于是直接访问数据库，所以效率较高，但使用起来不方便。</LI>
+  <LI>DataSet一次性从数据源获取数据到本地，并在本地建立一个微型数据库（包含表、行、列、规则、表之间的关系等），期间可以断开与服务器的连接，使用SqlDataAdapter对象操作“本地微型数据库”，结束后通过SqlDataAdapter一次性更新到远程数据库服务器。这种方式使用起来更方，便简单。但性能较第一种稍微差一点。（在一般的情况下两者的性能可以忽略不计。）</LI></UL>
+<P>一张十分出名的ADO.NET结构图：</P>
+<P style="TEXT-ALIGN: center"><IMG alt="" 
+src="C%23操作SQL%20Server数据库%20-%20Rain%20Man%20-%20博客园_files/18002906-bd0650c935e04d8caebbd029908ecbb6.jpg"></P>
+<H3>2、连接字符串的写法</H3><PRE>string connectString = "Data Source=.;Initial Catalog=Student;Integrated Security=True";</PRE>
+<H3>3、SqlConnection对象</H3>
+<P>命名空间：System.Data.SqlClient.SqlConnection;</P>
+<P>返回数据库连接对象，参数字符串。实例化“连接对象”，并打开连接</P><PRE>SqlConnection sqlCnt = new SqlConnection(connectString);
+sqlCnt.Open();</PRE>
+<P>使用完成后，需要关闭“连接对象”</P><PRE>sqlCnt.Close();</PRE>
+<H3>4、SqlCommand对象</H3>
+<P>命名空间：System.Data.SqlClient.SqlCommand;</P>
+<P>SqlCommand对象用于执行数据库操作，操作方式有三种：</P>
+<UL>
+  <LI>SQL语句：command.CommandType = CommandType.Text;</LI>
+  <LI>存储过程：command.CommandType = CommandType.StoredProcedure;</LI>
+  <LI>整张表：command.CommandType = CommandType.TableDirect;</LI></UL>
+<P>实例化一个SqlCommand对象</P><PRE>SqlCommand command = new SqlCommand();
+command.Connection = sqlCnt;            // 绑定SqlConnection对象
+</PRE>
+<P>或直接从SqlConnection创建</P><PRE>SqlCommand command = sqlCnt.CreateCommand();     
+</PRE>
+<H4>常用方法：</H4>
+<UL>
+  <LI>command.ExecuteNonQuery(): 返回受影响函数，如增、删、改操作；</LI>
+  <LI>command.ExecuteScalar()：执行查询，返回首行首列的结果；</LI>
+  <LI>command.ExecuteReader()：返回一个数据流（SqlDataReader对象）。</LI></UL>
+<H4>常用操作</H4>
+<H5>① 执行SQL</H5><PRE>SqlCommand cmd = conn.CreateCommand();              //创建SqlCommand对象
+cmd.CommandType = CommandType.Text;
+cmd.CommandText = "select * from products = @ID";   //sql语句
+cmd.Parameters.Add("@ID", SqlDbType.Int);
+cmd.Parameters["@ID"].Value = 1;                    //给参数sql语句的参数赋值
+</PRE>
+<H5>② 调用存储过程</H5><PRE>SqlCommand cmd = conn.CreateCommand();                      
+cmd.CommandType = System.Data.CommandType.StoredProcedure;
+cmd.CommandText = "存储过程名";
+</PRE>
+<H5>③ 整张表</H5><PRE>SqlCommand cmd = conn.CreateCommand();    
+cmd.CommandType = System.Data.CommandType.TableDirect;
+cmd.CommandText = "表名"
+</PRE>
+<H3>5、SqlDataReader对象</H3>
+<P>命名空间：System.Data.SqlClient.SqlDataReader;</P>
+<P>SqlDataReader对象提供<SPAN 
+style="COLOR: red">只读单向</SPAN>数据的功能，单向：只能依次读取下一条数据；只读：DataReader中的数据是只读的，不能修改；相对地DataSet中的数据可以任意读取和修改.</P>
+<P>它有一个很重要的方法，是Read()，返回值是个布尔值，作用是前进到下一条数据，一条条的返回数据，当布尔值为真时执行，为假时跳出。如</P><PRE>SqlCommand command = new SqlCommand();
+command.Connection = sqlCnt;
+command.CommandType = CommandType.Text;
+command.CommandText = "Select * from Users";
+SqlDataReader reader = command.ExecuteReader();		//执行SQL，返回一个“流”
+while (reader.Read())
+{
+    Console.Write(reader["username"]);	// 打印出每个用户的用户名
+}
+</PRE>
+<H3>6、DataSet对象</H3>
+<H4>6.1 SqlDataAdapter;</H4>
+<P>命名空间：System.Data.SqlClient.SqlDataAdapter;</P>
+<P>SqlDataAdapter是SqlCommand和DataSet之间的桥梁，实例化SqlDataAdapter对象：</P><PRE>SqlConnection sqlCnt = new SqlConnection(connectString);
+sqlCnt.Open();
+
+// 创建SqlCommand
+SqlCommand mySqlCommand = new SqlCommand();
+mySqlCommand.CommandType = CommandType.Text;
+mySqlCommand.CommandText = "select * from product";
+mySqlCommand.Connection = sqlCnt;
+
+// 创建SqlDataAdapter
+SqlDataAdapter myDataAdapter = new SqlDataAdapter();
+myDataAdapter.SelectCommand = mySqlCommand;	// 为SqlDataAdapter对象绑定所要执行的SqlCommand对象</PRE>
+<P>上述SQL可以简化为</P><PRE>SqlConnection sqlCnt = new SqlConnection(connectString);
+sqlCnt.Open();
+// 隐藏了SqlCommand对象的定义，同时隐藏了SqlCommand对象与SqlDataAdapter对象的绑定
+SqlDataAdapter myDataAdapter = new SqlDataAdapter("select * from product", sqlCnt);</PRE>
+<H5>属性和方法</H5>
+<UL>
+  <LI>myDataAdapter.SelectCommand属性：SqlCommand变量，封装Select语句；</LI>
+  <LI>myDataAdapter.InsertCommand属性：SqlCommand变量，封装Insert语句；</LI>
+  <LI>myDataAdapter.UpdateCommand属性：SqlCommand变量，封装Update语句；</LI>
+  <LI>myDataAdapter.DeleteCommand属性：SqlCommand变量，封装Delete语句。</LI>
+  <LI>myDataAdapter.fill()：将执行结果填充到Dataset中，会隐藏打开SqlConnection并执行SQL等操作。</LI></UL>
+<H4>6.2 SqlCommandBuilder;</H4>
+<P>命名空间：System.Data.SqlClient.SqlCommandBuilder。</P>
+<P>对DataSet的操作（更改、增加、删除）仅是在本地修改，若要提交到“数据库”中则需要SqlCommandBuilder对象。用于在客户端编辑完数据后，整体一次更新数据。具体用法如下：</P><PRE>SqlCommandBuilder mySqlCommandBuilder = new SqlCommandBuilder(myDataAdapter);  // 为myDataAdapter赋予SqlCommandBuilder功能
+myDataAdapter.Update(myDataSet, "表名");                   // 向数据库提交更改后的DataSet，第二个参数为DataSet中的存储表名，并非数据库中真实的表名（二者在多数情况下一致）。
+</PRE>
+<H4>6.3 DataSet</H4>
+<P>命名空间：System.Data.DataSet。</P>
+<P>数据集，本地微型数据库，可以存储多张表。</P>
+<P>使用DataSet第一步就是将SqlDataAdapter返回的数据集（表）填充到Dataset对象中：</P><PRE>SqlDataAdapter myDataAdapter = new SqlDataAdapter("select * from product", sqlCnt);
+DataSet myDataSet = new DataSet();		// 创建DataSet
+myDataAdapter.Fill(myDataSet, "product");	// 将返回的数据集作为“表”填入DataSet中，表名可以与数据库真实的表名不同，并不影响后续的增、删、改等操作</PRE>
+<H5>① 访问DataSet中的数据</H5><PRE>SqlDataAdapter myDataAdapter = new SqlDataAdapter("select * from product", sqlCnt);
+DataSet myDataSet = new DataSet();
+myDataAdapter.Fill(myDataSet, "product");
+
+DataTable myTable = myDataSet.Tables["product"];
+foreach (DataRow myRow in myTable.Rows) {
+    foreach (DataColumn myColumn in myTable.Columns) {
+        Console.WriteLine(myRow[myColumn]);	//遍历表中的每个单元格
+    }
+}</PRE>
+<H5>② 修改DataSet中的数据</H5><PRE>SqlDataAdapter myDataAdapter = new SqlDataAdapter("select * from product", sqlCnt);
+DataSet myDataSet = new DataSet();
+myDataAdapter.Fill(myDataSet, "product");
+
+// 修改DataSet
+DataTable myTable = myDataSet.Tables["product"];
+foreach (DataRow myRow in myTable.Rows) {
+    myRow["name"] = myRow["name"] + "商品";
+}
+
+// 将DataSet的修改提交至“数据库”
+SqlCommandBuilder mySqlCommandBuilder = new SqlCommandBuilder(myDataAdapter);
+myDataAdapter.Update(myDataSet, "product");</PRE>
+<P>注意：在修改、删除等操作中表product必须定义主键，select的字段中也必须包含主键，否则会提示“对于不返回任何键列信息的 
+SelectCommand,不支持 UpdateCommand 的动态 SQL 生成。”错误</P>
+<H5>③ 增加一行</H5><PRE>SqlDataAdapter myDataAdapter = new SqlDataAdapter("select * from product", sqlCnt);
+DataSet myDataSet = new DataSet();
+myDataAdapter.Fill(myDataSet, "product");
+DataTable myTable = myDataSet.Tables["product"];
+
+// 添加一行
+DataRow myRow = myTable.NewRow();
+myRow["name"] = "捷安特";
+myRow["price"] = 13.2;
+//myRow["id"] = 100; id若为“自动增长”，此处可以不设置，即便设置也无效
+myTable.Rows.Add(myRow);
+
+// 将DataSet的修改提交至“数据库”
+SqlCommandBuilder mySqlCommandBuilder = new SqlCommandBuilder(myDataAdapter);
+myDataAdapter.Update(myDataSet, "product");</PRE>
+<H5>④ 删除一行</H5><PRE>SqlDataAdapter myDataAdapter = new SqlDataAdapter("select * from product", sqlCnt);
+DataSet myDataSet = new DataSet();
+myDataAdapter.Fill(myDataSet, "product");
+
+// 删除第一行
+DataTable myTable = myDataSet.Tables["product"];
+myTable.Rows[0].Delete();
+
+SqlCommandBuilder mySqlCommandBuilder = new SqlCommandBuilder(myDataAdapter);
+myDataAdapter.Update(myDataSet, "product");</PRE>
+<H5>属性</H5>
+<UL>
+  <LI>Tables：获取包含在DataSet中的表的集合。</LI>
+  <LI>Relations：获取用于将表链接起来并允许从父表浏览到子表的关系的集合。</LI>
+  <LI>HasEroors：表明是否已经初始化DataSet对象的值。</LI></UL>
+<H5>方法</H5>
+<UL>
+  <LI>Clear清除DataSet对象中所有表的所有数据。</LI>
+  <LI>Clone复制DataSet对象的结构到另外一个DataSet对象中，复制内容包括所有的结构、关系和约束，但不包含任何数据。</LI>
+  <LI>Copy复制DataSet对象的数据和结构到另外一个DataSet对象中。两个DataSet对象完全一样。</LI>
+  <LI>CreateDataReader为每个DataTable对象返回带有一个结果集的DataTableReader，顺序与Tables集合中表的显示顺序相同。</LI>
+  <LI>Dispose释放DataSet对象占用的资源。</LI>
+  <LI>Reset将DataSet对象初始化。</LI></UL>
+<H3>7、释放资源</H3>
+<P>资源使用完毕后应及时关闭连接和释放，具体方法如下：</P><PRE>myDataSet.Dispose();        // 释放DataSet对象
+myDataAdapter.Dispose();    // 释放SqlDataAdapter对象
+myDataReader.Dispose();     // 释放SqlDataReader对象
+sqlCnt.Close();             // 关闭数据库连接
+sqlCnt.Dispose();           // 释放数据库连接对象</PRE></DIV></DIV>
+<DIV id=MySignature></DIV>
+<DIV class=clear></DIV>
+<DIV id=blog_post_info_block>
+<DIV id=blog_post_info></DIV>
+<DIV class=clear></DIV>
+<DIV id=post_next_prev></DIV></DIV></DIV>
+<DIV class=postDesc>posted @ <SPAN id=post-date>2012-03-13 15:54</SPAN> <A 
+href="http://www.cnblogs.com/rainman/">Rain Man</A> 阅读(<SPAN 
+id=post_view_count>...</SPAN>) 评论(<SPAN id=post_comment_count>...</SPAN>) <A 
+href="http://i.cnblogs.com/EditPosts.aspx?postid=2393975" rel=nofollow>编辑</A> <A 
+onclick="AddToWz(2393975);return false;" 
+href="http://www.cnblogs.com/rainman/archive/2012/03/13/2393975.html#">收藏</A></DIV></DIV>
+<SCRIPT type=text/javascript>var allowComments=true,isLogined=false,cb_blogId=37071,cb_entryId=2393975,cb_blogApp=currentBlogApp,cb_blogUserGuid='453a420b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2012/3/13 15:54:00';loadViewCount(cb_entryId);</SCRIPT>
+</DIV><!--end: topics 文章、评论容器--><A name=!comments></A>
+<DIV id=blog-comments-placeholder></DIV>
+<SCRIPT type=text/javascript>var commentManager = new blogCommentManager();commentManager.renderComments(0);</SCRIPT>
+
+<DIV id=comment_form class=commentform><A name=commentform></A>
+<DIV id=divCommentShow></DIV>
+<DIV id=comment_nav><SPAN id=span_refresh_tips></SPAN><A id=lnk_RefreshComments 
+onclick="return RefreshCommentList();" href="javascript:void(0);">刷新评论</A><A 
+onclick="return RefreshPage();" 
+href="http://www.cnblogs.com/rainman/archive/2012/03/13/2393975.html#">刷新页面</A><A 
+href="http://www.cnblogs.com/rainman/archive/2012/03/13/2393975.html#top">返回顶部</A></DIV>
+<DIV id=comment_form_container></DIV>
+<DIV id=ad_text_under_commentbox class=ad_text_commentbox></DIV>
+<DIV id=site_nav_under><A title=开发者的网上家园 href="http://www.cnblogs.com/" 
+target=_blank>博客园首页</A><A title=程序员问答社区 href="http://q.cnblogs.com/" 
+target=_blank>博问</A><A title=IT新闻 href="http://news.cnblogs.com/" 
+target=_blank>新闻</A><A href="http://home.cnblogs.com/ing/" 
+target=_blank>闪存</A><A href="http://job.cnblogs.com/" target=_blank>程序员招聘</A><A 
+href="http://kb.cnblogs.com/" target=_blank>知识库</A></DIV>
+<DIV id=opt_under_post></DIV>
+<SCRIPT type=text/javascript>
+    var enableGoogleAd = true;var googletag = googletag || {};googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</SCRIPT>
+
+<DIV id=ad_under_post_holder>
+<SCRIPT type=text/javascript>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +'//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+    try {
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C2_sitehome', [468, 60], 'div-gpt-ad-1346479110744-1').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    } catch (e) { }
+</SCRIPT>
+
+<DIV id=google_ad_c1 class=c_ad_block>
+<DIV style="WIDTH: 300px; HEIGHT: 250px" id=div-gpt-ad-1346480159711-0>
+<SCRIPT type=text/javascript>
+    try{
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });
+    } catch (e) { }
+    </SCRIPT>
+</DIV></DIV></DIV>
+<DIV id=blog_news_kb></DIV>
+<DIV id=HistoryToday class=c_ad_block></DIV>
+<SCRIPT type=text/javascript>
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</SCRIPT>
+
+<SCRIPT type=text/javascript>    
+</SCRIPT>
+</DIV></DIV><!--end: forFlow --></DIV><!--end: mainContent 主体内容容器-->
+<DIV id=sideBar>
+<DIV id=sideBarMain>
+<DIV id=calendar>
+<DIV style="DISPLAY: none" id=blog-calendar></DIV>
+<SCRIPT type=text/javascript>loadBlogDefaultCalendar();</SCRIPT>
+</DIV>
+<DIV id=leftcontentcontainer>
+<DIV id=blog-sidecolumn></DIV>
+<SCRIPT type=text/javascript>loadBlogSideColumn();</SCRIPT>
+</DIV></DIV><!--end: sideBarMain --></DIV><!--end: sideBar 侧边栏容器 -->
+<DIV class=clear></DIV></DIV><!--end: main -->
+<DIV class=clear></DIV>
+<DIV id=footer><!--done-->Copyright ©2014 Rain Man 
+</DIV><!--end: footer --></DIV><!--end: home 自定义的最大容器 --><!--PageEndHtml Block Begin-->
+<SCRIPT type=text/javascript>
+(function() {
+    var guid = 0,
+    getMaoDian = function(elem) {
+        var md = 'm' + (guid++),
+        html = '&nbsp;<a href="#" name="' + md + '"></a>';
+        $(html).insertBefore(elem);
+        return md;
+    },
+    encodeHTML = function(source) {
+        return String(source).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    },
+    addCatalogue = function(elem) {
+        var levelList = {
+            h3: 0
+        },
+        $nodes = $(elem).find('h3'),
+        html = [];
+
+        // Init HTML
+        html.push('<ul class="catalogue">');
+        $nodes.each(function() {
+            var level = levelList[this.nodeName.toLowerCase()];
+            maodian = getMaoDian(this),
+            text = encodeHTML($(this).text());
+            html.push('<li style="padding-left:' + (level * 40) + 'px"><span><a href="#' + maodian + '">' + text + '</a></span></li>');
+        });
+        html.push('</ul>');
+
+        // Insert Node
+        $(elem).prepend(html.join(''));
+    };
+    setTimeout(function(){
+        $('div.postCon, #cnblogs_post_body').each(function() {
+            addCatalogue(this);
+        });
+    }, 300);
+})();
+</SCRIPT>
+<!--
+
+<script type="text/javascript" src="http://files.cnblogs.com/rainman/shCore.js"></script>
+<script type="text/javascript" src="http://files.cnblogs.com/rainman/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="http://files.cnblogs.com/rainman/shCoreDefault.css"/>
+
+<script type="text/javascript" src="http://files.cnblogs.com/rainman/gaoLiang.js"></script>
+-->
+<SCRIPT type=text/javascript>
+$('pre').each(function(){
+    var childCode = $(this).find('code');
+    if(childCode.length>0) {
+        this.innerHTML = $(this).find('code').html();
+    }
+});
+SyntaxHighlighter.all('pre');
+
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F95eb98507622b340bc1da73ed59cfe34' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+<!--PageEndHtml Block End--></BODY></HTML>

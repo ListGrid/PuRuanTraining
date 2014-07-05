@@ -1,0 +1,33 @@
+.rainman-post TABLE P {
+	MARGIN: 0px 8px
+}
+.tbcenter TD {
+	TEXT-ALIGN: center !important
+}
+.tbcenter TH {
+	TEXT-ALIGN: center !important
+}
+.dayTitle {
+	DISPLAY: none
+}
+.postCon {
+	DISPLAY: none
+}
+.c_b_p_desc {
+	DISPLAY: none
+}
+.entrylistItemPostDesc {
+	TEXT-ALIGN: left; MARGIN-BOTTOM: 10px
+}
+.postDesc {
+	TEXT-ALIGN: left; MARGIN-BOTTOM: 10px
+}
+.postTitle {
+	MARGIN-BOTTOM: 5px
+}
+.entrylistPosttitle {
+	MARGIN-BOTTOM: 5px
+}
+.syntaxhighlighter {
+	MARGIN: 10px
+}

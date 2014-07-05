@@ -1,0 +1,8 @@
+
+　　据透露，SQL Server 2014的重点包括效能的改善、支持混合云以及提供更完整的商业智能（BI）解决方案。在效能的改善上，SQL Server 2014在线上交易处理（OLTP）的核心数据库中嵌入了in-memory运算功能，并强化数据仓储的in-memory能力，改善资源与责任的管理。
+
+　　微软强调SQL Server 2014作为混合云平台的能力，宣称它可以随时备份到Azure平台以及Azure简化云端备份与恢复，而且轻易部署SQL服务器迁移到Azure的虚拟机上。
+
+　　此外，SQL Server 2014新增了可简化内外部数据存取的Data Explorer，以及可用来查询关系型数据与非关系型数据的Polybase平台。由於导入了新的in-memory技术，预期可加速该系统的分析效能。
+
+　　目前，Gartner在2012年调查数据指出，甲骨文该市场的营收市占率达48.3%，超越后面IBM、微软、SAP与Teradata在该领域的营收总和。微软SQL Server 2014的发布将促进一部分企业从甲骨文转至SQL Server。

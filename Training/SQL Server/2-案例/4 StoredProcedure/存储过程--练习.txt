@@ -1,0 +1,458 @@
+一、系统存储过程
+1、目录过程
+USE master
+GO
+-- To use named parameters:
+EXEC sp_addlinkedserver 
+   @server = 'linkname',
+   @srvproduct='', 
+   @provider = 'SQLOLEDB',
+   @datasrc='wxclm', 
+   @catalog='pubs'
+GO
+
+select * from linkname.pubs.dbo.aa
+
+
+USE master
+GO
+-- To use named parameters:
+EXEC sp_addlinkedserver 
+   @server = 'SEATTLE Mktg', 
+   @provider = 'Microsoft.Jet.OLEDB.4.0', 
+   @srvproduct = 'OLE DB Provider for Jet',
+   @datasrc = 'E:\Program Files\Microsoft Office\Office\Samples\Northwind.mdb'
+GO
+-- OR to use no named parameters:
+USE master
+GO
+EXEC sp_addlinkedserver 
+   'SEATTLE Mktg', 
+   'OLE DB Provider for Jet',
+   'Microsoft.Jet.OLEDB.4.0', 
+   'E:\Program Files\Microsoft Office\Office\Samples\Northwind.mdb'
+GO
+
+2,复制存储过程
+use msdb
+go
+sp_adddistributiondb login
+
+
+--将login数据库设置为分发数据库.前提是将服务器设置为分发服务器.
+
+3，扩展存储过程
+xp_cmdshell 'dir c:\*.exe'
+
+4,系统存储过程
+
+1)
+USE master
+EXEC sp_configure 'recovery interval', '3'
+RECONFIGURE WITH OVERRIDE
+
+
+--下面的示例将系统恢复间歇设为 3 分钟。
+
+
+--使用 recovery interval 选项设置 Microsoft? SQL Server恢复数据库所需的最大分钟数。SQL Server 实例每次启动时，将恢复每个数据库，回滚没有提交的事务，前滚已提交但在 SQL Server 实例停止时未将更改写入磁盘的事务。该配置选项设置了 SQL Server 在恢复每一个数据库时所应花时间的上限。默认值为 0，表示由 SQL Server 自动配置。实际上，这表示每个数据库的恢复时间不超过 1 分钟，对于每个活动的数据库大约每 1 分钟有一个检查点。
+
+2)
+exec sp_databases
+
+--列出服务器上的所有数据库
+
+3)
+
+exec sp_server_info    --查看服务器信息
+
+
+4)
+use msdb
+go
+exec sp_start_job @job_name = 'aa'
+
+5)
+
+exec sp_stored_procedures    --当前环境中所有的存储过程.
+
+6)
+
+exec sp_tables   --列到当前环境中所有可以查询的对象.包含视图
+
+
+--aa是服务器上的一个作业.
+执行此存储过程,首先保证sql server agent启动了.
+
+二，用户自定义存储过程
+1,创建存储过程
+create procedure cc
+as select * from student 
+
+2，修改存储过程
+alter  procedure cc(@a  varchar(10),
+		    @b  varchar(10))
+as 
+insert into student  values(@a,@b)
+
+
+exec cc 'cde','abc'
+
+
+3,带输出参数的存储过程
+A. 使用带有复杂 SELECT 语句的简单过程
+下面的存储过程从四个表的联接中返回所有作者（提供了姓名）、出版的书籍以及出版社。该存储过程不使用任何参数。
+
+USE pubs
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'au_info_all' AND type = 'P')
+   DROP PROCEDURE au_info_all
+GO
+CREATE PROCEDURE au_info_all
+AS
+SELECT au_lname, au_fname, title, pub_name
+   FROM authors a INNER JOIN titleauthor ta
+      ON a.au_id = ta.au_id INNER JOIN titles t
+      ON t.title_id = ta.title_id INNER JOIN publishers p
+      ON t.pub_id = p.pub_id
+GO
+
+au_info_all 存储过程可以通过以下方法执行：
+
+EXECUTE au_info_all
+-- Or
+EXEC au_info_all
+
+如果该过程是批处理中的第一条语句，则可使用：
+
+au_info_all
+
+B. 使用带有参数的简单过程
+下面的存储过程从四个表的联接中只返回指定的作者（提供了姓名）、出版的书籍以及出版社。该存储过程接受与传递的参数精确匹配的值。
+
+USE pubs
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'au_info' AND type = 'P')
+   DROP PROCEDURE au_info
+GO
+USE pubs
+GO
+CREATE PROCEDURE au_info 
+   @lastname varchar(40), 
+   @firstname varchar(20) 
+AS 
+SELECT au_lname, au_fname, title, pub_name
+   FROM authors a INNER JOIN titleauthor ta
+      ON a.au_id = ta.au_id INNER JOIN titles t
+      ON t.title_id = ta.title_id INNER JOIN publishers p
+      ON t.pub_id = p.pub_id
+   WHERE  au_fname = @firstname
+      AND au_lname = @lastname
+GO
+
+au_info 存储过程可以通过以下方法执行：
+
+EXECUTE au_info 'Dull', 'Ann'
+-- Or
+EXECUTE au_info @lastname = 'Dull', @firstname = 'Ann'
+-- Or
+EXECUTE au_info @firstname = 'Ann', @lastname = 'Dull'
+-- Or
+EXEC au_info 'Dull', 'Ann'
+-- Or
+EXEC au_info @lastname = 'Dull', @firstname = 'Ann'
+-- Or
+EXEC au_info @firstname = 'Ann', @lastname = 'Dull'
+
+如果该过程是批处理中的第一条语句，则可使用：
+
+au_info 'Dull', 'Ann'
+-- Or
+au_info @lastname = 'Dull', @firstname = 'Ann'
+-- Or
+au_info @firstname = 'Ann', @lastname = 'Dull'
+
+C. 使用带有通配符参数的简单过程
+下面的存储过程从四个表的联接中只返回指定的作者（提供了姓名）、出版的书籍以及出版社。该存储过程对传递的参数进行模式匹配，如果没有提供参数，则使用预设的默认值。
+
+USE pubs
+IF EXISTS (SELECT name FROM sysobjects 
+      WHERE name = 'au_info2' AND type = 'P')
+   DROP PROCEDURE au_info2
+GO
+USE pubs
+GO
+CREATE PROCEDURE au_info2
+   @lastname varchar(30) = 'D%',
+   @firstname varchar(18) = '%'
+AS 
+SELECT au_lname, au_fname, title, pub_name
+FROM authors a INNER JOIN titleauthor ta
+   ON a.au_id = ta.au_id INNER JOIN titles t
+   ON t.title_id = ta.title_id INNER JOIN publishers p
+   ON t.pub_id = p.pub_id
+WHERE au_fname LIKE @firstname
+   AND au_lname LIKE @lastname
+GO
+
+au_info2 存储过程可以用多种组合执行。下面只列出了部分组合：
+
+EXECUTE au_info2
+-- Or
+EXECUTE au_info2 'Wh%'
+-- Or
+EXECUTE au_info2 @firstname = 'A%'
+-- Or
+EXECUTE au_info2 '[CK]ars[OE]n'
+-- Or
+EXECUTE au_info2 'Hunter', 'Sheryl'
+-- Or
+EXECUTE au_info2 'H%', 'S%'
+
+D. 使用 OUTPUT 参数
+OUTPUT 参数允许外部过程、批处理或多条 Transact-SQL 语句访问在过程执行期间设置的某个值。下面的示例创建一个存储过程 (titles_sum)，并使用一个可选的输入参数和一个输出参数。
+
+首先，创建过程：
+
+USE pubs
+GO
+IF EXISTS(SELECT name FROM sysobjects
+      WHERE name = 'titles_sum' AND type = 'P')
+   DROP PROCEDURE titles_sum
+GO
+USE pubs
+GO
+CREATE PROCEDURE titles_sum @@TITLE varchar(40) = '%', @@SUM money OUTPUT
+AS
+SELECT 'Title Name' = title
+FROM titles 
+WHERE title LIKE @@TITLE 
+SELECT @@SUM = SUM(price)
+FROM titles
+WHERE title LIKE @@TITLE
+GO
+
+接下来，将该 OUTPUT 参数用于控制流语言。 
+
+
+
+说明  OUTPUT 变量必须在创建表和使用该变量时都进行定义。
+
+
+参数名和变量名不一定要匹配，不过数据类型和参数位置必须匹配（除非使用 @@SUM = variable 形式）。 
+
+DECLARE @@TOTALCOST money
+EXECUTE titles_sum 'The%', @@TOTALCOST OUTPUT
+IF @@TOTALCOST < 200 
+BEGIN
+   PRINT ' '
+   PRINT 'All of these titles can be purchased for less than $200.'
+END
+ELSE
+   SELECT 'The total cost of these titles is $' 
+         + RTRIM(CAST(@@TOTALCOST AS varchar(20)))
+
+下面是结果集：
+
+Title Name                                                               
+------------------------------------------------------------------------ 
+The Busy Executive's Database Guide
+The Gourmet Microwave
+The Psychology of Computer Cooking
+
+(3 row(s) affected)
+
+Warning, null value eliminated from aggregate.
+ 
+All of these titles can be purchased for less than $200.
+
+E. 使用 OUTPUT 游标参数
+OUTPUT 游标参数用来将存储过程的局部游标传递回调用批处理、存储过程或触发器。
+
+首先，创建以下过程，在 titles 表上声明并打开一个游标：
+
+USE pubs
+IF EXISTS (SELECT name FROM sysobjects 
+      WHERE name = 'titles_cursor' and type = 'P')
+DROP PROCEDURE titles_cursor
+GO
+CREATE PROCEDURE titles_cursor @titles_cursor CURSOR VARYING OUTPUT
+AS
+SET @titles_cursor = CURSOR
+FORWARD_ONLY STATIC FOR
+SELECT *
+FROM titles
+
+OPEN @titles_cursor
+GO
+
+接下来，执行一个批处理，声明一个局部游标变量，执行上述过程以将游标赋值给局部变量，然后从该游标提取行。
+
+USE pubs
+GO
+DECLARE @MyCursor CURSOR
+EXEC titles_cursor @titles_cursor = @MyCursor OUTPUT
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+   FETCH NEXT FROM @MyCursor
+END
+CLOSE @MyCursor
+DEALLOCATE @MyCursor
+GO
+
+F. 使用 WITH RECOMPILE 选项
+如果为过程提供的参数不是典型的参数，并且新的执行计划不应高速缓存或存储在内存中，WITH RECOMPILE 子句会很有帮助。
+
+USE pubs
+IF EXISTS (SELECT name FROM sysobjects
+      WHERE name = 'titles_by_author' AND type = 'P')
+   DROP PROCEDURE titles_by_author
+GO
+CREATE PROCEDURE titles_by_author @@LNAME_PATTERN varchar(30) = '%'
+WITH RECOMPILE
+AS
+SELECT RTRIM(au_fname) + ' ' + RTRIM(au_lname) AS 'Authors full name',
+   title AS Title
+FROM authors a INNER JOIN titleauthor ta 
+   ON a.au_id = ta.au_id INNER JOIN titles t
+   ON ta.title_id = t.title_id
+WHERE au_lname LIKE @@LNAME_PATTERN
+GO
+
+G. 使用 WITH ENCRYPTION 选项
+WITH ENCRYPTION 子句对用户隐藏存储过程的文本。下例创建加密过程，使用 sp_helptext 系统存储过程获取关于加密过程的信息，然后尝试直接从 syscomments 表中获取关于该过程的信息。
+
+IF EXISTS (SELECT name FROM sysobjects
+      WHERE name = 'encrypt_this' AND type = 'P')
+   DROP PROCEDURE encrypt_this
+GO
+USE pubs
+GO
+CREATE PROCEDURE encrypt_this
+WITH ENCRYPTION
+AS
+SELECT * 
+FROM authors
+GO
+
+EXEC sp_helptext encrypt_this
+
+下面是结果集：
+
+The object's comments have been encrypted.
+
+接下来，选择加密存储过程内容的标识号和文本。
+
+SELECT c.id, c.text 
+FROM syscomments c INNER JOIN sysobjects o
+   ON c.id = o.id
+WHERE o.name = 'encrypt_this'
+
+下面是结果集：
+
+
+
+说明  text 列的输出显示在单独一行中。执行时，该信息将与 id 列信息出现在同一行中。
+
+
+id         text                                                        
+---------- ------------------------------------------------------------
+1413580074 ?????????????????????????????????e??????????????????????????????????????????????????????????????????????????
+
+(1 row(s) affected)
+
+H. 创建用户定义的系统存储过程
+下面的示例创建一个过程，显示表名以 emp 开头的所有表及其对应的索引。如果没有指定参数，该过程将返回表名以 sys 开头的所有表（及索引）。
+
+IF EXISTS (SELECT name FROM sysobjects
+      WHERE name = 'sp_showindexes' AND type = 'P')
+   DROP PROCEDURE sp_showindexes
+GO
+USE master
+GO
+CREATE PROCEDURE sp_showindexes
+   @@TABLE varchar(30) = 'sys%'
+AS 
+SELECT o.name AS TABLE_NAME,
+   i.name AS INDEX_NAME, 
+   indid AS INDEX_ID
+FROM sysindexes i INNER JOIN sysobjects o
+   ON o.id = i.id 
+WHERE o.name LIKE @@TABLE
+GO         
+USE pubs
+EXEC sp_showindexes 'emp%'
+GO
+
+下面是结果集：
+
+TABLE_NAME       INDEX_NAME       INDEX_ID 
+---------------- ---------------- ----------------
+employee         employee_ind     1
+employee         PK_emp_id        2
+
+(2 row(s) affected)
+
+I. 使用延迟名称解析
+下面的示例显示四个过程以及延迟名称解析的各种可能使用方式。尽管引用的表或列在编译时不存在，但每个存储过程都可创建。
+
+IF EXISTS (SELECT name FROM sysobjects
+      WHERE name = 'proc1' AND type = 'P')
+   DROP PROCEDURE proc1
+GO
+-- Creating a procedure on a nonexistent table.
+USE pubs
+GO
+CREATE PROCEDURE proc1
+AS
+   SELECT *
+   FROM does_not_exist
+GO  
+-- Here is the statement to actually see the text of the procedure.
+SELECT o.id, c.text
+FROM sysobjects o INNER JOIN syscomments c 
+   ON o.id = c.id
+WHERE o.type = 'P' AND o.name = 'proc1'
+GO
+USE master
+GO
+IF EXISTS (SELECT name FROM sysobjects
+      WHERE name = 'proc2' AND type = 'P')
+   DROP PROCEDURE proc2
+GO
+-- Creating a procedure that attempts to retrieve information from a
+-- nonexistent column in an existing table.
+USE pubs
+GO
+CREATE PROCEDURE proc2
+AS
+   DECLARE @middle_init char(1)
+   SET @middle_init = NULL
+   SELECT au_id, middle_initial = @middle_init
+   FROM authors
+GO  
+-- Here is the statement to actually see the text of the procedure.
+SELECT o.id, c.text
+FROM sysobjects o INNER JOIN syscomments c 
+   ON o.id = c.id
+WHERE o.type = 'P' and o.name = 'proc2'
+
+
+三、处理错误信息
+
+create procedure Myproc
+as
+ declare @v_ctr int
+ select @v_ctr=5
+ while @v_ctr>0
+ begin
+     select @v_ctr * @v_ctr
+     select @v_ctr=@v_ctr-1
+     if @v_ctr=2
+     begin
+         raiserror ('计数器已小于3',1,2)
+	 break
+     end
+end
+
+exec myproc

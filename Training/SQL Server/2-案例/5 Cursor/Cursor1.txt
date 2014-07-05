@@ -1,0 +1,42 @@
+CREATE Proc SP_UpdateSalary
+as
+
+Declare @EmployeeID int
+Declare @JobLevel nvarchar(30)
+Declare @EmpSalary money
+
+--step 1 : declare cursor
+Declare cur_emp cursor For
+	SELECT A.EmployeeID,A.JobLevel, B.EmpSalary
+	FROM Employees A INNER JOIN	Salary B 
+			ON A.EmployeeID = B.EmployeeID
+
+--step 2 : open cursor
+OPEN cur_emp
+--step 3 : fetch from / into
+FETCH NEXT FROM cur_emp INTO @EmployeeID,@JobLevel,@EmpSalary
+
+
+IF @@FETCH_STATUS <> 0
+	PRINT 'No any record!' 
+ELSE
+	PRINT 'Records:' + Cast(@@Cursor_Rows as varchar(10)) + '条'
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+		--根据@JobLevel的值信息，修改@EmpSalary对应的Salary表中的@EmpSalary字段
+		if (@JobLevel='经理')	--思考有什么问题
+			Update Salary Set EmpSalary=EmpSalary*1.08 where EmployeeID=@EmployeeID
+		else if (@JobLevel='工程师')
+			Update Salary Set EmpSalary=EmpSalary*1.10 where EmployeeID=@EmployeeID		
+
+		FETCH NEXT FROM cur_emp INTO @EmployeeID,@JobLevel,@EmpSalary
+	END
+
+--step 4 : close
+CLOSE cur_emp
+
+--step 5 : deallocate
+DEALLOCATE cur_emp
+GO
+

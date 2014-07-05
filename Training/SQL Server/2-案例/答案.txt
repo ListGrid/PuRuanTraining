@@ -1,0 +1,105 @@
+练习1：
+
+--Method (1)
+declare @id int
+declare @id2 int
+select top 10 * into #tmp1 from User order by userId asc
+select @id = max(userId) from #tmp1
+
+select top 20 * into #tmp1 from User order by userId asc
+select @id2 = max(userId) from tmp1
+
+select * from User where userId >@id and userId <=@id2
+
+
+Method (2)
+
+select top 20 * into #tmp from User
+select top 10 * from #tmp order by userId desc
+
+
+Method (3)
+select top 10 userId into #tmp from User
+select top 10 * from User where userId not in (select userId from #tmp)
+or
+select top 10 * from User where userId > (select max(userId) from #tmp)
+
+--练习2：
+方法1. select * from Result where name in (select name from Result group by name having min(score)>=80)
+
+方法2. select * from Result where name in (select distinct name from Result where name not in (select name from Result where score<80))
+
+
+--练习3
+select distinct Team,
+sum(case Status when 'WIN' then 1 else 0 end) as 'WIN',
+sum(case Status when 'LOSE' then 1 else 0 end) as 'LOSE'
+from [DEMO].[dbo].[Score] group by Team
+
+
+--练习4
+declare @x int=1,@y int,@c varchar(6000)
+while(@x<=9)
+begin
+ select @y=1,@c=''
+ while(@y<=@x)
+ begin
+   select @c=@c+cast(@y as varchar)+'x'+cast(@x as varchar)+'='+cast(@x*@y as varchar)+' '
+   select @y=@y+1
+ end
+ print @c+char(10)
+ select @x=@x+1
+end
+
+
+--练习5
+if exists(select 1 from tempdb..sysobjects where id = object('#tmp'))
+begin
+    drop table #tmp
+end
+go
+
+create table #tmp
+(
+    a int
+)
+go
+
+
+--练习6
+declare @tmp int
+begin
+    set nocount on
+    set rowcount 100000
+    delete from BigTable
+    set @tmp = @@rowcount
+    while @tmp > 0
+        begin
+             begin transaction
+             delete from BigTable
+             set @tmp = @@rowcount
+             commit transaction
+        end
+     set rowcount 0 /* reset it to 0 */
+end
+
+
+--练习7
+当where条件满足下列情况时，索引被使用到
+1)where a=? and b =? and c=?
+2)where a=? and b=?
+3)where a=?
+
+--练习8
+
+1. select * into #tmp_table from [DEMO].[dbo].[User] where 1 = 2
+
+--建立唯一性索引
+2. create unique clustered index UserIndex on #tmp_table(userID, userName) with ignore_dup_key on 'default'
+
+3. insert into #tmp_table select * from [DEMO].[dbo].[User]
+select * from #tmp_table
+
+
+
+

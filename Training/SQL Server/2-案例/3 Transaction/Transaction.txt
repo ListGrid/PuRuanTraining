@@ -1,0 +1,12 @@
+use Employees 
+go
+Begin Tran
+	Save Tran tran1
+		Update student set LoginPwd=1 where LoingID=1
+		Update student set LoginPwd=2 where LoingID=2
+	Rollback Tran tran1
+		Update student set LoginPwd=3 where LoingID=3	
+--rollback Tran	--全部回滚
+commit Tran		--全部确认
+
+select * from Student

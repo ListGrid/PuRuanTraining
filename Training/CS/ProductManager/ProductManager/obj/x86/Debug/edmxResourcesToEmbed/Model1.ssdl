@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bbsDB_dataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="bbsDB_dataModelStoreContainer">
+    <EntitySet Name="Product" EntityType="bbsDB_dataModel.Store.Product" store:Type="Tables" store:Schema="dbo" store:Name="Product">
+      <DefiningQuery>SELECT 
+      [Product].[LineID] AS [LineID], 
+      [Product].[Product] AS [Product], 
+      [Product].[Price] AS [Price], 
+      [Product].[Quantity] AS [Quantity], 
+      [Product].[LineTotal] AS [LineTotal]
+      FROM [dbo].[Product] AS [Product]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'bbsDB_data.dbo.Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="LineID" />
+      <PropertyRef Name="Product" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="LineTotal" />
+    </Key>
+    <Property Name="LineID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Product" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="Price" Type="real" Nullable="false" />
+    <Property Name="Quantity" Type="real" Nullable="false" />
+    <Property Name="LineTotal" Type="real" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,1 @@
+http://www.codeproject.com/Articles/36847/Three-Layer-Architecture-in-C-NET

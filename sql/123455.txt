@@ -1,5 +1,0 @@
-tore: "D:/Program/GitExtensions/GitCredentialWinStore/git-credential-winstore.exe": No such file or directory
-
-
-sfsafsafdsa
-safsfdsa

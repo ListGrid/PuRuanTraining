@@ -16,3 +16,5 @@ E:\Git\PuRuanTraining\Training\CS\ThreeLayerDemo\Code\ThreeLayerDemo\obj\Debug\G
 E:\Git\PuRuanTraining\Training\CS\ThreeLayerDemo\Code\ThreeLayerDemo\obj\Debug\GenerateResource-ResGen-hrlDF.read.1.tlog
 E:\Git\PuRuanTraining\Training\CS\ThreeLayerDemo\Code\ThreeLayerDemo\obj\Debug\GenerateResource-ResGen-hrlEC-cmd.read.1.tlog
 E:\Git\PuRuanTraining\Training\CS\ThreeLayerDemo\Code\ThreeLayerDemo\obj\Debug\GenerateResource-ResGen-hrlEC.read.1.tlog
+E:\Git\PuRuanTraining\Training\CS\ThreeLayerDemo\Code\ThreeLayerDemo\obj\Debug\GenerateResource-ResGen-hrl5F-cmd.read.1.tlog
+E:\Git\PuRuanTraining\Training\CS\ThreeLayerDemo\Code\ThreeLayerDemo\obj\Debug\GenerateResource-ResGen-hrl5F.read.1.tlog

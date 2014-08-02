@@ -1,0 +1,12 @@
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\DataAccess.dll
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Work\temp\KT201008\BusinessLogic\bin\Debug\DataAccess.pdb
+C:\Work\temp\KT201008\BusinessLogic\obj\Debug\ResolveAssemblyReference.cache
+C:\Work\temp\KT201008\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Work\temp\KT201008\BusinessLogic\obj\Debug\BusinessLogic.pdb

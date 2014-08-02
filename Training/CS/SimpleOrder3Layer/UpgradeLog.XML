@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="KS201008">
+</Property><Property Name="Solution File" Value="C:\PuRuanTraining\KS201008\KS201008.sln">
+</Property><Property Name="User Options File" Value="C:\PuRuanTraining\KS201008\KS201008.suo">
+</Property><Property Name="Date" Value="01 November 2013">
+</Property><Property Name="Time" Value="14:35">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="KS201008.sln" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008.sln">
+</Event><Event ErrorLevel="0" Project="" Source="KS201008.suo" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008.suo">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\KSBusinessLogic.csproj" Description="Project file successfully backed up as C:\PuRuanTraining\KS201008\Backup\BusinessLogic\KSBusinessLogic.csproj">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\Customer.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\BusinessLogic\Customer.cs">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\Order.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\BusinessLogic\Order.cs">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\OrderLine.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\BusinessLogic\OrderLine.cs">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\BusinessLogic\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\ObservableCollection.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\BusinessLogic\ObservableCollection.cs">
+</Event><Event ErrorLevel="1" Project="KSBusinessLogic" Source="BusinessLogic\KSBusinessLogic.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\KSBusinessLogic.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="KSBusinessLogic" Source="BusinessLogic\KSBusinessLogic.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\KSDataAccess.csproj" Description="Project file successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\KSDataAccess.csproj">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\CustomerData.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\CustomerData.cs">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\CustomerDataAccess.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\CustomerDataAccess.cs">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\OrderData.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\OrderData.cs">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\OrderDataAccess.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\OrderDataAccess.cs">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\OrderLineData.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\OrderLineData.cs">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\OrderLineDataAccess.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\OrderLineDataAccess.cs">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\Utility.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\DataAccess\Utility.cs">
+</Event><Event ErrorLevel="1" Project="KSDataAccess" Source="DataAccess\KSDataAccess.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\KSDataAccess.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="KSDataAccess" Source="DataAccess\KSDataAccess.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\KS201008.csproj" Description="Project file successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\KS201008.csproj">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Form1.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Form1.cs">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Form1.Designer.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Program.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Program.cs">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Properties\Resources.Designer.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Properties\Settings.Designer.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Properties\Settings.settings" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\app.config" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\app.config">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Properties\DataSources\KT201008.BusinessLogic.OrderLine.datasource" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Properties\DataSources\KT201008.BusinessLogic.OrderLine.datasource">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Form1.resx" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Form1.resx">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\Properties\Resources.resx" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KS201008\Properties\Resources.resx">
+</Event><Event ErrorLevel="1" Project="KS201008" Source="KS201008\KS201008.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\KS201008.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="KS201008" Source="KS201008\KS201008.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="KSUnitTest" Source="KTUnitTest\KSUnitTest.csproj" Description="Project file successfully backed up as C:\PuRuanTraining\KS201008\Backup\KTUnitTest\KSUnitTest.csproj">
+</Event><Event ErrorLevel="0" Project="KSUnitTest" Source="KTUnitTest\TestOrderLine.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KTUnitTest\TestOrderLine.cs">
+</Event><Event ErrorLevel="0" Project="KSUnitTest" Source="KTUnitTest\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\PuRuanTraining\KS201008\Backup\KTUnitTest\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="1" Project="KSUnitTest" Source="KTUnitTest\KSUnitTest.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="KSUnitTest" Source="KTUnitTest\KSUnitTest.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="KSUnitTest" Source="KTUnitTest\KSUnitTest.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="KS201008.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="KS201008.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="KSBusinessLogic" Source="BusinessLogic\KSBusinessLogic.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="KSDataAccess" Source="DataAccess\KSDataAccess.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="KS201008" Source="KS201008\KS201008.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="KSUnitTest" Source="KTUnitTest\KSUnitTest.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bbsDB_dataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="bbsDB_dataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Product" EntityType="bbsDB_dataModel.Product" />
+  </EntityContainer>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="LineID" />
+      <PropertyRef Name="Product1" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="LineTotal" />
+    </Key>
+    <Property Name="LineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product1" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="Price" Type="Single" Nullable="false" />
+    <Property Name="Quantity" Type="Single" Nullable="false" />
+    <Property Name="LineTotal" Type="Single" Nullable="false" />
+  </EntityType>
+</Schema>

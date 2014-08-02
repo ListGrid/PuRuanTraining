@@ -95,6 +95,7 @@
     <None Include="bbsDB_dataDataSet3.xss">
       <DependentUpon>bbsDB_dataDataSet3.xsd</DependentUpon>
     </None>
+    <None Include="bbsDB_dataEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

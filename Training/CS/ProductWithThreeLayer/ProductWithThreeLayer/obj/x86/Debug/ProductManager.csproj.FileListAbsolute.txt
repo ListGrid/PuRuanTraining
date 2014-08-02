@@ -1,0 +1,16 @@
+E:\Training\CS\ProductManager\ProductManager\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Training\CS\ProductManager\ProductManager\obj\x86\Debug\ProductManager.Form1.resources
+E:\Training\CS\ProductManager\ProductManager\obj\x86\Debug\ProductManager.Properties.Resources.resources
+E:\Training\CS\ProductManager\ProductManager\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Training\CS\ProductManager\ProductManager\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Training\CS\ProductManager\ProductManager\bin\Debug\ProductManager.exe.config
+E:\Training\CS\ProductManager\ProductManager\bin\Debug\ProductManager.exe
+E:\Training\CS\ProductManager\ProductManager\bin\Debug\ProductManager.pdb
+E:\Training\CS\ProductManager\ProductManager\obj\x86\Debug\ProductManager.exe
+E:\Training\CS\ProductManager\ProductManager\obj\x86\Debug\ProductManager.pdb
+E:\Git\PuRuanTraining\Training\CS\ProductManager\ProductManager\bin\Debug\ProductManager.exe.config
+E:\Git\PuRuanTraining\Training\CS\ProductManager\ProductManager\obj\x86\Debug\ProductManager.exe
+E:\Git\PuRuanTraining\Training\CS\ProductManager\ProductManager\obj\x86\Debug\ProductManager.pdb
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductManager\bin\Debug\ProductManager.exe.config
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductManager\obj\x86\Debug\ProductManager.exe
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductManager\obj\x86\Debug\ProductManager.pdb

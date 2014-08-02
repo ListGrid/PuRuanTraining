@@ -1,0 +1,37 @@
+private ObservableCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>> _<#=code.Escape(navProperty)#> = new ObservableCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>>();
+    /// <summary>
+    /// <#=SummaryComment(navProperty)#>
+    /// </summary><#=LongDescriptionCommentElement(navProperty, region.CurrentIndentLevel)#>
+    [XmlIgnoreAttribute()]
+    [SoapIgnoreAttribute()]
+    [DataMemberAttribute()]
+    [EdmRelationshipNavigationPropertyAttribute("<#=navProperty.RelationshipType.NamespaceName#>", "<#=navProperty.RelationshipType.Name#>", "<#=navProperty.ToEndMember.Name#>")]
+<#
+            if (navProperty.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many)
+            {
+#>	
+    <#=code.SpaceAfter(NewModifier(navProperty))#><#=Accessibility.ForProperty(navProperty)#> ObservableCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>> <#=code.Escape(navProperty)#>
+    {
+        <#=code.SpaceAfter(Accessibility.ForGetter(navProperty))#>get
+        {
+			EntityCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>> entities = ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>>("<#=navProperty.RelationshipType.FullName#>", "<#=navProperty.ToEndMember.Name#>");
+			_<#=code.Escape(navProperty)#>.Clear();
+			foreach(var ele in entities)
+			{
+				_<#=code.Escape(navProperty)#>.Add(ele);
+			}
+            return _<#=code.Escape(navProperty)#>;
+        }
+        <#=code.SpaceAfter(Accessibility.ForSetter(navProperty))#>set
+        {
+            if ((value != null))
+            {
+				EntityCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>> entities = ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>>("<#=navProperty.RelationshipType.FullName#>", "<#=navProperty.ToEndMember.Name#>");
+				foreach(var ele in value)
+				{
+					entities.Add(ele);
+				}
+                ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<<#=MultiSchemaEscape(navProperty.ToEndMember.GetEntityType(), code)#>>("<#=navProperty.RelationshipType.FullName#>", "<#=navProperty.ToEndMember.Name#>", entities);
+            }
+        }
+    }

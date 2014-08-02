@@ -1,0 +1,10 @@
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\bin\Debug\ProductManager.exe.config
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\obj\x86\Debug\ProductManager.exe
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\obj\x86\Debug\ProductManager.pdb
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\bin\Debug\ProductManager.exe
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\bin\Debug\ProductManager.pdb
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\obj\x86\Debug\ProductManager.Form1.resources
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\obj\x86\Debug\ProductManager.Properties.Resources.resources
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Git\PuRuanTraining\Training\CS\ProductWithThreeLayer\ProductWithThreeLayer\obj\x86\Debug\GenerateResource.write.1.tlog

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bbsDB_dataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="bbsDB_dataModelStoreContainer">
+          <EntitySet Name="Product" EntityType="bbsDB_dataModel.Store.Product" store:Type="Tables" store:Schema="dbo" store:Name="Product">
+            <DefiningQuery>SELECT 
+      [Product].[LineID] AS [LineID], 
+      [Product].[Product] AS [Product], 
+      [Product].[Price] AS [Price], 
+      [Product].[Quantity] AS [Quantity], 
+      [Product].[LineTotal] AS [LineTotal]
+      FROM [dbo].[Product] AS [Product]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'bbsDB_data.dbo.Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="LineID" />
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="LineTotal" />
+          </Key>
+          <Property Name="LineID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Price" Type="real" Nullable="false" />
+          <Property Name="Quantity" Type="real" Nullable="false" />
+          <Property Name="LineTotal" Type="real" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bbsDB_dataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="bbsDB_dataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Product" EntityType="bbsDB_dataModel.Product" />
+        </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="LineID" />
+            <PropertyRef Name="Product1" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="LineTotal" />
+          </Key>
+          <Property Name="LineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product1" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="Price" Type="Single" Nullable="false" />
+          <Property Name="Quantity" Type="Single" Nullable="false" />
+          <Property Name="LineTotal" Type="Single" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bbsDB_dataModelStoreContainer" CdmEntityContainer="bbsDB_dataEntities">
+          <EntitySetMapping Name="Product"><EntityTypeMapping TypeName="bbsDB_dataModel.Product"><MappingFragment StoreEntitySet="Product">
+            <ScalarProperty Name="LineID" ColumnName="LineID" />
+            <ScalarProperty Name="Product1" ColumnName="Product" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+            <ScalarProperty Name="LineTotal" ColumnName="LineTotal" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="bbsDB_dataModel.Product" Width="1.5" PointX="1.25" PointY="0.875" Height="1.7908333333333331" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

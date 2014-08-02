@@ -1,0 +1,16 @@
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	path = d:/Program/KDiff3/kdiff3.exe
+[diff]
+	guitool = kdiff3
+[difftool "kdiff3"]
+	path = d:/Program/KDiff3/kdiff3.exe
+[core]
+	editor = \"D:/Program/GitExtensions/GitExtensions.exe\" fileeditor
+	autocrlf = true
+[credential]
+	helper = !\"D:/Program/GitExtensions/GitCredentialWinStore/git-credential-winstore.exe\"
+[user]
+	name = ListGrid
+	email = fenghongkui@sina.com.cn
